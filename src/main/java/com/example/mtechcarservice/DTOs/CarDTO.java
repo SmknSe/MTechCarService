@@ -7,5 +7,5 @@ public class CarDTO {
     private String name;
     private Long wheel_id;
     private Long body_id;
-    private int wheelsNum;
+    private int wheels_amount;
 }

@@ -18,7 +18,7 @@ public class Car {
     private CarBody body;
     @ManyToOne
     private CarWheel wheel;
-    private int wheelsNum;
+    private int wheels_amount;
     private String name;
 
 }

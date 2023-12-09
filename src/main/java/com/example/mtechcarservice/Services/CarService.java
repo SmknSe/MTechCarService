@@ -22,14 +22,13 @@ public class CarService {
     }
 
     public Car createCar(CarDTO dto) throws Exception {
-        System.out.println(dto);
-        if (dto.getWheelsNum() < 2) throw new Exception("Number of wheels should be at least 2");
+        if (dto.getWheels_amount() < 2) throw new Exception("Number of wheels should be at least 2");
         if (dto.getBody_id() == null) throw new Exception("A car must have a body");
         Car car = Car.builder()
                 .wheel(carWheelService.getWheelById(dto.getWheel_id()))
                 .body(carBodyService.getBodyById(dto.getBody_id()))
                 .name(dto.getName())
-                .wheelsNum(dto.getWheelsNum())
+                .wheels_amount(dto.getWheels_amount())
                 .build();
         carRepo.save(car);
         return car;

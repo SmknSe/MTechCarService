@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CarWheelController {
     private final CarWheelService carWheelService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAllCarWheels(){
         return ResponseEntity.status(HttpStatus.OK).body(carWheelService.getAll());
     }

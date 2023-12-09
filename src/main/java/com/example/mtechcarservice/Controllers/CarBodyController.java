@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class CarBodyController {
     private final CarBodyService carBodyService;
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAllCarBody(){
         return ResponseEntity.status(HttpStatus.OK).body(carBodyService.getAll());
     }

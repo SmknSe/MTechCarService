@@ -18,4 +18,14 @@ public class CarBodyService {
     public CarBody getBodyById(Long id){
         return carBodyRepo.findById(id).orElseThrow();
     }
+
+    public void save(String type){
+        CarBody body = new CarBody();
+        body.setType(type);
+        carBodyRepo.save(body);
+    }
+
+    public boolean isEmpty(){
+        return carBodyRepo.count()==0;
+    }
 }

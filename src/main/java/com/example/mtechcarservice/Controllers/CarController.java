@@ -3,6 +3,7 @@ package com.example.mtechcarservice.Controllers;
 import com.example.mtechcarservice.DTOs.CarDTO;
 import com.example.mtechcarservice.Entities.Car;
 import com.example.mtechcarservice.Services.CarService;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -17,7 +18,7 @@ import java.util.NoSuchElementException;
 public class CarController {
     private final CarService carService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<?> getAllCars(@RequestParam(name = "page", required = false) Integer page){
         if(page != null){
             return ResponseEntity.status(HttpStatus.OK).body(carService.getAllByPage(page));
@@ -34,13 +35,13 @@ public class CarController {
         }
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<?> createCar(@RequestBody CarDTO dto){
         try {
             return ResponseEntity.status(HttpStatus.OK).body(carService.createCar(dto));
         }
-        catch (NoSuchElementException exception){
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No element with given id found");
+        catch (EntityNotFoundException exception){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(exception.getMessage());
         }
         catch (Exception e){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());

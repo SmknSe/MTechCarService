@@ -18,4 +18,14 @@ public class CarWheelService {
     public CarWheel getWheelById(Long id){
         return carWheelRepo.findById(id).orElseThrow();
     }
+
+    public void save(String size){
+        CarWheel wheel = new CarWheel();
+        wheel.setSize(size);
+        carWheelRepo.save(wheel);
+    }
+
+    public boolean isEmpty(){
+        return carWheelRepo.count()==0;
+    }
 }
